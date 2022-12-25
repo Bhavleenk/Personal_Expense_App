@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personalexpense/widgets/chart.dart';
 
 //ctrl+space, alt + enter
 import '/widgets/newTransaction.dart';
@@ -55,11 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
-      return tx.date.isAfter(
-        DateTime.now().subtract(
-          Duration(days: 7),
-        ),
-      );
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
@@ -112,30 +107,30 @@ class _MyHomePageState extends State<MyHomePage> {
             //FOR ROW: it is opposite
 
             //for 2widgets next to each other
-            //   Container(
-            //     width: double.infinity,
-            //     child:
-            //         Card(color: Colors.blue, child: Text('CHART!'), elevation: 5),
-            //   ), //text takes as much size as that of the word if u want to change it wrap it in container
-            //   TransactionList(_userTransactions),
-            //   // Card(
-            //   //   color: Colors.red,
-            //   //   child: Text('LIST OF TRANSACTIONS'),
-            //   // ), // not using card here because we ave more than 1 transactions so we will use column
-            //
-            //   // Container(
-            //   //   height: 80,
-            //   //   child: Card(
-            //   //     child: ListTile(
-            //   //       trailing: Icon(Icons.delete),
-            //   //       minLeadingWidth: 100,
-            //   //       leading:
-            //   //           Container(width: 100, child: Center(child: Text("99"))),
-            //   //       title: Text("Pants"),
-            //   //       subtitle: Text("Bbibofubaifbo"),
-            //   //     ),
-            //   //   ),
-            //   // ),
+            // Container(
+            //   width: double.infinity,
+            //   child:
+            //       Card(color: Colors.blue, child: Text('CHART!'), elevation: 5),
+            // ), //text takes as much size as that of the word if u want to change it wrap it in container
+            // TransactionList(_userTransactions),
+            // Card(
+            //   color: Colors.red,
+            //   child: Text('LIST OF TRANSACTIONS'),
+            // ), // not using card here because we ave more than 1 transactions so we will use column
+
+            // Container(
+            //   height: 80,
+            //   child: Card(
+            //     child: ListTile(
+            //       trailing: Icon(Icons.delete),
+            //       minLeadingWidth: 100,
+            //       leading:
+            //           Container(width: 100, child: Center(child: Text("99"))),
+            //       title: Text("Pants"),
+            //       subtitle: Text("Bbibofubaifbo"),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
