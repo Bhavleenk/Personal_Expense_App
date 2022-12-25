@@ -11,54 +11,75 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300, //the container the space it can take
-      child: ListView.builder(
-        //column with single child scrool view
-        itemBuilder: (ctx, index) {
-          return Card(
-            child: Row(
+      child: transactions.isEmpty
+          ? Column(
               children: [
+                Text(
+                  'No transactions added yet!',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Colors.purple,
-                    width: 2,
-                  )),
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    //transaction.amount.toString(), or below
-                    //'\$${transaction.amount}', or
-                    '\₹${transactions[index].amount}',
-
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.purple),
+                  // image is wrapped with container beacuse column gets only defined size but conatainer does not
+                  height: 100,
+                  child: Image.asset(
+                    'assets/images/nothing.png',
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      transactions[index].title,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      DateFormat('yyyy/MM/dd').format(transactions[index].date),
-                      style: TextStyle(color: Colors.grey),
-                    )
-                  ],
-                ),
               ],
+            )
+          : ListView.builder(
+              //column with single child scrool view
+              itemBuilder: (ctx, index) {
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
+                        )),
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          //transaction.amount.toString(), or below
+                          //'\$${transaction.amount}', or
+                          '\₹${transactions[index].amount}',
+
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Theme.of(context).primaryColor),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            transactions[index].title,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            DateFormat('yyyy/MM/dd')
+                                .format(transactions[index].date),
+                            style: TextStyle(color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: transactions.length,
+              // children: transactions.map((transaction) {
+              //   );
+              // }).toList(),
             ),
-          );
-        },
-        itemCount: transactions.length,
-        // children: transactions.map((transaction) {
-        //   );
-        // }).toList(),
-      ),
     );
   }
 }
