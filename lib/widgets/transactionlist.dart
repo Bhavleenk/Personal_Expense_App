@@ -38,8 +38,8 @@ class TransactionList extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        margin: EdgeInsets.symmetric(
+                            vertical: 100, horizontal: 150),
                         decoration: BoxDecoration(
                             border: Border.all(
                           color: Theme.of(context).primaryColor,
@@ -58,7 +58,7 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             transactions[index].title,
