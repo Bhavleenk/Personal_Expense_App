@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blueGrey,
           accentColor: Colors.grey.shade600,
+          errorColor: Colors.blueGrey,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
                 subtitle1: TextStyle(fontFamily: 'Open Sans', fontSize: 18),
@@ -73,6 +74,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -115,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // child:
               //     Card(color: Colors.blue, child: Text('CHART!'), elevation: 5),
             ), //text takes as much size as that of the word if u want to change it wrap it in container
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
             Card(
               color: Colors.red,
               // child: Text('LIST OF TRANSACTIONS'),
