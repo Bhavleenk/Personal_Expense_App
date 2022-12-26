@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personalexpense/widgets/transactionlist.dart';
 
+//ctrl+click
 //ctrl+space, alt + enter
 import '/widgets/newTransaction.dart';
 import './models/transaction.dart';
@@ -58,11 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final NewTx = Transaction(
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
     );
     setState(() {
@@ -107,16 +110,16 @@ class _MyHomePageState extends State<MyHomePage> {
             //FOR ROW: it is opposite
 
             //for 2widgets next to each other
-            // Container(
-            //   width: double.infinity,
-            //   child:
-            //       Card(color: Colors.blue, child: Text('CHART!'), elevation: 5),
-            // ), //text takes as much size as that of the word if u want to change it wrap it in container
-            // TransactionList(_userTransactions),
-            // Card(
-            //   color: Colors.red,
-            //   child: Text('LIST OF TRANSACTIONS'),
-            // ), // not using card here because we ave more than 1 transactions so we will use column
+            Container(
+              width: double.infinity,
+              // child:
+              //     Card(color: Colors.blue, child: Text('CHART!'), elevation: 5),
+            ), //text takes as much size as that of the word if u want to change it wrap it in container
+            TransactionList(_userTransactions),
+            Card(
+              color: Colors.red,
+              // child: Text('LIST OF TRANSACTIONS'),
+            ), // not using card here because we ave more than 1 transactions so we will use column
 
             // Container(
             //   height: 80,
